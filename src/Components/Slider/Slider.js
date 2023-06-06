@@ -24,7 +24,9 @@ export default function Slider() {
     }
   };
 
-  console.log(dataSlider);
+  const moveDot = (index) => {
+    setSlideAnim({ index: index, inProgress: false });
+  };
 
   return (
     <div className="container-slider">
@@ -42,6 +44,25 @@ export default function Slider() {
       })}
       <BtnSlider moveSlide={nextSlide} direction={"next"} />
       <BtnSlider moveSlide={prevSlide} direction={"prev"} />
+
+      <div className="container-dots">
+        {Array.from({ length: 5 }).map((item, index) => {
+          return (
+            <div
+              className={slideAnim.index === index + 1 ? "dot active" : "dot"}
+              onClick={() => moveDot(index + 1)}
+            ></div>
+          );
+        })}
+      </div>
     </div>
   );
+}
+
+{
+  /* <div className={slideAnim.index === 1 ? "dot active" : "dot"}></div>
+<div className={slideAnim.index === 2 ? "dot active" : "dot"}></div>
+<div className={slideAnim.index === 3 ? "dot active" : "dot"}></div>
+<div className={slideAnim.index === 4 ? "dot active" : "dot"}></div>
+<div className={slideAnim.index === 5 ? "dot active" : "dot"}></div> */
 }
